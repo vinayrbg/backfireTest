@@ -23,7 +23,7 @@ $(function () {
 
         // Will hold objects of the Service model
         model: Service,
-        /* url: "https://testbackbone-67782.firebaseio.com",*/ 
+        /* url: "https://testbackbone-67782.firebaseio.com",*/
         // Return an array only with the checked services
          getChecked: function(){
              return this.where({checked:true});
@@ -72,7 +72,7 @@ $(function () {
             this.total = $('#total span');
             this.list = $('#services');
             // Listen for the change event on the collection.
-            // This is equivalent to listening on every one of the 
+            // This is equivalent to listening on every one of the
             // service objects in the collection.
             this.listenTo(services, 'change', this.render);
             // Create views for every one of the services in the
@@ -103,10 +103,27 @@ var MyTodo = Backbone.Model.extend({
     }
 });
 
+// var MyTodoCollection = Backbone.Firebase.Collection.extend({
+//     model: MyTodo,
+//     url: "https://testbackbone-67782.firebaseio.com"
+// });
+
+
+var config = {
+    apiKey: "AIzaSyBAbF5ELmnEvFaKdRMVDJth729qUpjVWI4",
+    authDomain: "testbackbone-67782.firebaseapp.com",
+    databaseURL: "https://testbackbone-67782.firebaseio.com",
+    projectId: "testbackbone-67782",
+    storageBucket: "testbackbone-67782.appspot.com",
+    messagingSenderId: "106173591594"
+  };
+window.firebase.initializeApp(config);
+
+
 var MyTodoCollection = Backbone.Firebase.Collection.extend({
-    model: MyTodo,
-    url: "https://testbackbone-67782.firebaseio.com"
-});
+  url:"/todo", // This would tell the collection to use http://YOUR-URL.firebaseio.com/todos
+  model: MyTodo
+})
 
 // The main view for the application
 var MyAppView = Backbone.View.extend({
